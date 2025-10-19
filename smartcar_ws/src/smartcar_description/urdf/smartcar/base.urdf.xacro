@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find smartcar_description)/urdf/smartcar/common_inertia.xacro"/>
+   <xacro:macro name="base_xacro"  params= "length radius">
+   <link name="base_footprint"/>
+   <link name="base_link"   >
+    <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+            <box size="0.30 0.25 0.12"/>
+        </geometry>
+        <material name="blue">
+            <color rgba="0.2 0.2 0.8 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+            <box size="0.30 0.25 0.12"/>
+        </geometry>
+        <material name="blue">
+            <color rgba="0.2 0.2 0.8 1.0"/>
+        </material>
+    </collision>
+    <xacro:cylinder_inertia m="1.0" r="${radius}" h="${length}"/>
+   </link>
+   <joint name="base_joint" type="fixed">
+    <origin xyz="0.0 0.0 ${length/2.0+0.032-0.001}" rpy="0.0 0.0 0.0"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+   </joint>
+   </xacro:macro>
+</robot>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:include filename="$(find smartcar_description)/urdf/smartcar/common_inertia.xacro"/>
+    <xacro:macro name ="camera_xacro" params ="xyz">
+    <!--============相机模块===========-->
+    <link name="camera_link">
+    <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+            <box size="0.03 0.1 0.03"/>
+        </geometry>
+        <material name="dark_grey">
+            <color rgba="0.2 0.2 0.2 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+            <box size="0.05 0.05 0.05"/>
+        </geometry>
+        <material name="dark_grey">
+            <color rgba="0.2 0.2 0.2 1.0"/>
+        </material>
+    </collision>
+    <xacro:box_inertia m="0.1" w="0.05" h="0.05" d="0.05" />
+    </link>
+    <joint name="camera_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="camera_link"/>
+        <origin xyz="${xyz}"/>
+    </joint>
+    <link name="camera_optical_link"></link>
+    <joint name="camera_optical_joint" type="fixed">
+        <parent link="camera_link"/>
+        <child link="camera_optical_link"/>
+        <origin xyz="0.0 0.0 0.0" rpy="${-pi/2} 0.0 ${-pi/2}"/>
+    </joint>
+</xacro:macro>
+</robot>
