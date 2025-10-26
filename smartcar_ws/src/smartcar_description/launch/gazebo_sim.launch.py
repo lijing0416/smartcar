@@ -9,7 +9,7 @@ def generate_launch_description():
     robot_name_in_model = 'smartcar'
     urdf_tutorial_path = get_package_share_directory('smartcar_description')
     default_model_path = urdf_tutorial_path + '/urdf/smartcar/smartcar.urdf.xacro'
-    default_world_path = urdf_tutorial_path + '/world/custom_room.world'
+    default_world_path = urdf_tutorial_path + '/world/simple.world'
     #为launch声明参数
     action_declare_arg_mode_path = launch.actions.DeclareLaunchArgument(
         name="model",default_value=str(default_model_path),
